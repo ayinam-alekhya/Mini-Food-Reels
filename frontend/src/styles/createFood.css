@@ -1,0 +1,268 @@
+@import './variables.css';
+
+.create-food-page {
+  min-height: 100vh;
+  background: var(--page-bg1);
+  padding: var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 32px;
+}
+
+.create-food-form {
+  width: 100%;
+  max-width: var(--container-width);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: calc(var(--space-lg) + 4px);
+  box-shadow: 0 10px 36px rgba(2,6,23,0.12);
+  border: 1px solid var(--card-border);
+}
+
+.form-title {
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 12px var(--space-md);
+  color: var(--text);
+  font-size: 15px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.video-upload {
+  background: var(--card);
+  border: 2px dashed var(--card-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.video-upload:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+.video-upload.dragging {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-sm);
+  color: var(--muted);
+}
+
+.upload-text {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: var(--space-xs);
+}
+
+.upload-hint {
+  color: var(--muted-on-card);
+  font-size: 13px;
+}
+
+.submit-button {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background: color-mix(in srgb, var(--accent) 92%, black);
+}
+
+.submit-button:active {
+  background: color-mix(in srgb, var(--accent) 86%, black);
+}
+
+/* Desktop enhancements */
+@media (min-width: 768px) {
+  .create-food-page {
+    padding-top: 48px;
+  }
+  
+  .create-food-form {
+    max-width: 520px;
+    padding: var(--space-lg) 32px;
+  }
+  
+  .form-title {
+    font-size: 28px;
+  }
+  
+  .video-upload {
+    padding: 32px var(--space-lg);
+  }
+
+  .video-preview {
+    margin-top: var(--space-md);
+  }
+}
+
+.video-preview {
+  width: 280px;
+  aspect-ratio: 9/16;
+  border-radius: var(--radius-lg);
+  margin: var(--space-md) auto 0;
+  background: var(--card);
+  overflow: hidden;
+  display: none;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.video-preview.active {
+  display: block;
+}
+
+.video-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--card);
+}
+
+@media (max-width: 480px) {
+  .video-preview {
+    width: 240px;
+  }
+}
+
+/* Overlay actions (right side) and bottom nav inside preview */
+.video-preview .preview-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-actions {
+  position: absolute;
+  right: 8px;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  z-index: 10;
+}
+
+.preview-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--card);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.preview-action button {
+  background: rgba(0,0,0,0.28);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.preview-action .count {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--card);
+}
+
+.preview-info {
+  position: absolute;
+  left: 14px;
+  bottom: 72px;
+  color: var(--card);
+  z-index: 8;
+}
+
+.visit-store-btn {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.preview-bottom-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62px;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  z-index: 12;
+  backdrop-filter: blur(4px);
+}
+
+.preview-bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--card);
+  font-size: 12px;
+}
+
+.preview-bottom-nav .nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 480px) {
+  .preview-actions { right: 6px; gap: 12px; }
+  .preview-action button { width: 40px; height: 40px; }
+  .preview-info { bottom: 76px; left: 12px; }
+}

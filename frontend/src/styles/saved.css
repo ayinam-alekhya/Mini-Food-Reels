@@ -1,0 +1,264 @@
+@import './variables.css';
+
+/* Full-screen page that scrolls vertically with snap */
+.saved-reels-page {
+  position: fixed;
+  inset: 0;
+  background: var(--page-bg1);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars on WebKit (optional) */
+.saved-reels-page::-webkit-scrollbar { display: none; }
+
+.saved-reels-feed {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Each reel fills the viewport */
+.saved-reel {
+  position: relative;
+  width: 100vw;
+  height: 100svh;     /* safe mobile viewport height */
+  min-height: 100vh;  /* fallback */
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+/* Edge-to-edge video */
+.saved-reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay: title/cta at bottom, back button at top-left */
+.saved-reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none; /* let taps go to buttons only */
+  padding: 16px;
+}
+
+/* top row (back) */
+.saved-back {
+  align-self: flex-start;
+  pointer-events: auto;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+
+/* bottom meta */
+.saved-meta {
+  display: grid;
+  gap: 8px;
+  pointer-events: auto;
+  padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); /* keep clear of fixed bottom nav */
+}
+
+.saved-desc {
+  color: #fff;
+  font-size: 1.05rem;
+  text-shadow: 0 0 8px rgba(0,0,0,0.9);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* CTA button */
+.saved-btn {
+  display: inline-block;
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+/* Right side stacked actions */
+.saved-reel-actions {
+  position: absolute;
+  right: 16px;
+  bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  z-index: 5;
+}
+
+.saved-action button {
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.saved-count {
+  color: white;
+  font-size: 13px;
+  margin-top: 6px;
+}
+/* === Fullscreen saved reels baseline (if you don't have these yet) === */
+.saved-reels-page {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+.saved-reels-page::-webkit-scrollbar { display: none; }
+
+.saved-reels-feed { width: 100%; min-height: 100%; }
+
+.saved-reel {
+  position: relative;
+  width: 100vw;
+  height: 100svh;          /* full screen */
+  min-height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.saved-reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === Bottom text & button overlay (left/bottom) === */
+.saved-reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;              /* below actions, above video */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.saved-meta { display: grid; gap: 10px; max-width: 80%; }
+.saved-desc {
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+}
+.saved-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* Back button (top-left) */
+.saved-back {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* === RIGHT-SIDE ACTIONS (like / save / comment) === */
+.saved-actions {
+  position: absolute;
+  right: 16px;
+  bottom: 140px;           /* lift above Visit store area */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  z-index: 3;              /* above video and overlay */
+  color: #fff;             /* icons & counts inherit this */
+}
+
+.saved-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.saved-action button {
+  background: rgba(0,0,0,0.32);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;             /* makes SVG visible */
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Make sure SVGs use the current text color */
+.saved-actions svg {
+  display: block;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Filled bookmark when saved */
+.saved-action .is-saved svg path[fill] {
+  fill: currentColor;
+}
+
+.saved-action .count {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* Mobile tweak */
+@media (max-width: 480px) {
+  .saved-actions { right: 10px; bottom: 120px; gap: 12px; }
+  .saved-action button { width: 44px; height: 44px; }
+}
+
+/* Mobile-first; larger screens can reduce bottom padding if no fixed nav there */
+@media (min-width: 900px) {
+  .saved-meta {
+    padding-bottom: 24px;
+  }
+}
