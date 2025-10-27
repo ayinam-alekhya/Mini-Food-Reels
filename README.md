@@ -136,6 +136,37 @@ Mini-Food-Reels/
 - Responsive design for all mobile sizes  
 
 ---
+## 📸 Application Demonstration
+
+### 🎥 Demo Videos
+Explore key functionalities through short demonstration clips:
+
+- **Food Partner Registration & Login** — [`FoodPartnerRegisterLogin.mp4`](./Food_Reels/FoodPartnerRegisterLogin.mp4)
+- **User Registration & Login** — [`UserRegisterLogin.mp4`](./Food_Reels/UserRegisterLogin.mp4)
+
+> These videos highlight the authentication process for both users and food partners.
+
+---
+
+### 🖼️ Application Screenshots
+
+Below are some visual highlights of the application's user interface and major workflows.  
+All screenshots are available inside the [`Application_Screenshots`](./Food_Reels/Application_Screenshots/) folder.
+
+| Screen | Description |
+|--------|--------------|
+| ![User Register](./Food_Reels/Application_Screenshots/User_Register.png) | User Registration Page |
+| ![User Login](./Food_Reels/Application_Screenshots/User_Login.png) | User Login Page |
+| ![Home Page](./Food_Reels/Application_Screenshots/Home_page.png) | Video Feed Home Page |
+| ![Video Saved Liked](./Food_Reels/Application_Screenshots/Video_saved_liked.png) | Liked/Saved Video View |
+| ![Saved Feed](./Food_Reels/Application_Screenshots/Saved_feed.png) | Saved Feed Section |
+| ![Visit Store Profile](./Food_Reels/Application_Screenshots/Visit_store_Profile_Page.png) | Visit Store / Profile Page |
+| ![Food Partner Register](./Food_Reels/Application_Screenshots/Food_patner_Register.png) | Food Partner Registration |
+| ![Food Partner Login](./Food_Reels/Application_Screenshots/Food_patner_Login.png) | Food Partner Login |
+| ![Uploading Video](./Food_Reels/Application_Screenshots/Uploading_video.png) | Uploading a New Video |
+| ![After Upload](./Food_Reels/Application_Screenshots/After_video_Upload.png) | Feed After Successful Upload |
+
+> Each screenshot captures a specific interaction flow, demonstrating the app’s end-to-end experience.
 
 ## ☁️ Deployment Tips
 
