@@ -5,23 +5,42 @@ const saveModel = require('../models/save.model');
 
 const {v4:uuid}= require("uuid");
 
+const EXT_FROM_MIME = {
+  "video/mp4": "mp4",
+  "video/webm": "webm",
+  "video/ogg": "ogg",
+  "video/quicktime": "mov",
+};
+
 async function createFood(req, res) {
-    //console.log(req.foodPatner);
-    const fileUploadResult = await storageService.uploadFile(req.file.buffer , uuid());
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No video uploaded" });
+    }
+
+    const { buffer, mimetype } = req.file;
+    const ext = EXT_FROM_MIME[mimetype] || "mp4";
+    const filename = `${uuid()}.${ext}`;
+
+    const uploadRes = await storageService.uploadFile(buffer, filename, mimetype);
+
     const food = await foodModel.create({
-        name:req.body.name,
-        description:req.body.description,
-        video:fileUploadResult.url,
-        foodPatner:req.foodPatner._id
+      name: req.body.name,
+      description: req.body.description,
+      video: uploadRes.url,         // ImageKit returned URL
+      foodPatner: req.foodPatner._id
+    });
 
-    })
-    //console.log(fileUploadResult);
-    res.status(201).json({
-        message: "Food created successfully",
-        food:food
-    })
+    return res.status(201).json({
+      message: "Food created successfully",
+      food
+    });
+
+  } catch (err) {
+    console.error("createFood error:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 }
-
 async function getFoodItems(req, res) {
     const foodItem = await foodModel.find({})
     res.status(200).json({
