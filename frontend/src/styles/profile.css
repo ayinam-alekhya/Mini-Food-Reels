@@ -1,0 +1,129 @@
+@import './variables.css';
+
+/* ===== Page ===== */
+.profile-page {
+  background: var(--page-bg1);
+  color: var(--text);
+  max-width: 980px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  display: grid;
+  gap: calc(var(--space-lg) + 4px);
+
+}
+
+/* ===== Header Card ===== */
+.profile-header {
+  background: color-mix(in srgb, var(--card-bg) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: var(--space-6);
+  box-shadow:
+    0 10px 28px color-mix(in srgb, var(--card-border) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 12%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.profile-meta {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--card-border) 60%, transparent);
+}
+
+.profile-info { display: grid; gap: var(--space-sm); }
+
+.profile-info h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.profile-pill {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  color: inherit;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.profile-stat { display: grid; gap: 6px; }
+
+.profile-stat-label {
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.profile-stat-value {
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.profile-sep {
+  height: 1px;
+  border: 1px solid color-mix(in srgb, var(--card-bg) 72%, transparent);
+
+}
+
+/* ===== Video grid (3 per row, no gaps) ===== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.profile-grid-item {
+  position: relative;
+  aspect-ratio: 3 / 5;
+  border-radius: 0;
+  border: none;
+  overflow: hidden;
+}
+
+.profile-grid-item::after {
+  display: none;
+}
+
+.profile-grid-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(104%);
+}
+
+@media (max-width: 480px) {
+  .profile-header { padding: var(--space-lg); }
+  .profile-meta { grid-template-columns: 56px 1fr; gap: var(--space-md); }
+}

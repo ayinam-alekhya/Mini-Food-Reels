@@ -1,0 +1,48 @@
+@import "./variables.css";
+
+/* single source of truth for height */
+:root { --reels-nav-h: 64px; }
+
+.fixed-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--reels-nav-h);
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;  /* ends apart */
+  align-items: center;
+  padding: 0 18px;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.bn-item {
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: .9;
+}
+.bn-item.active { opacity: 1; }
+.bn-item svg { width: 22px; height: 22px; }
+
+@supports (padding: max(0px)) {
+  .fixed-bottom-nav {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    height: calc(var(--reels-nav-h) + max(0px, env(safe-area-inset-bottom)));
+  }
+}
+
+/* small phones */
+@media (max-width: 480px) {
+  .bn-item svg { width: 24px; height: 24px; }
+}

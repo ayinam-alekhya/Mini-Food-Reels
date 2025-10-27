@@ -1,0 +1,138 @@
+@import './variables.css';
+
+/* One variable for the bottom nav height everywhere */
+:root {
+  --bn-h: 64px; /* match your BottomNav height */
+  --bn-safe: calc(var(--bn-h) + env(safe-area-inset-bottom, 0px));
+}
+
+
+/* BottomNav (unchanged behavior, now using --bn-h) */
+.fixed-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bn-h);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  background: rgba(0,0,0,0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+@supports (padding: max(0px)) {
+  .fixed-bottom-nav {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    height: calc(var(--bn-h) + max(0px, env(safe-area-inset-bottom)));
+  }
+}
+
+/* -------- Reels -------- */
+html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; overflow-x: hidden; }
+
+/* Reserve space for the fixed BottomNav so content doesn't sit under it */
+.reels-page {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding-bottom: var(--bn-safe) !important;   /* <-- key line */
+}
+.reels-page::-webkit-scrollbar { display: none; }
+
+.reels-feed { width: 100%; min-height: 100%; }
+
+.reel {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Lift bottom overlay above nav */
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 20px calc(var(--bn-safe) + 28px) 20px !important;
+}
+
+
+.reel-content { display: flex; flex-direction: column; gap: 10px; }
+.reel-description {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+  line-height: 1.35;
+}
+
+.reel-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  transition: 0.25s ease-in-out;
+}
+.reel-btn:hover { background: rgba(0,0,0,0.75); transform: scale(1.03); }
+
+/* Keep right-side actions above the nav too */
+.reel-actions {
+  position: absolute;
+  right: 16px;
+  bottom: calc(60px + var(--bottom-nav-h)); /* ⬅ moved from ~60px to 120px */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  z-index: 4;
+}
+
+
+.reel-action { display: flex; flex-direction: column; align-items: center; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.reel-action button {
+  background: rgba(0,0,0,0.32);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: white;
+  width: 48px; height: 48px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.reel-action .count { margin-top: 6px; font-size: 13px; }
+
+/* Remove any old hard-coded bottoms */
+@media (max-width: 480px) {
+  .reel-actions {
+    right: 10px;
+    bottom: calc(120px + var(--bn-safe)) !important;  /* no magic numbers */
+    gap: 12px;
+  }
+  .reel-action button { width: 44px; height: 44px; }
+}
